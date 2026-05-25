@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>主力大戶籌碼分析報告 2026-05-25</title>
+  <style>
+:root{--bg:#f4f6f5;--panel:#fff;--ink:#17201c;--muted:#65736d;--line:#dce4df;--green:#16855f;--red:#b84a4a;--amber:#9d6b16;--blue:#2f6f9f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",Arial,sans-serif;line-height:1.5}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 28px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.eyebrow{font-size:12px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em}.topbar h1{margin:2px 0 4px;font-size:24px;letter-spacing:0}.topbar p{margin:0;color:var(--muted);font-size:13px}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#1f352d;text-decoration:none;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+main{max-width:1440px;margin:0 auto;padding:24px}.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{display:block;margin:6px 0;font-size:30px;line-height:1.1}.metric.positive strong{color:var(--green)}.metric.negative strong{color:var(--red)}.metric.neutral strong{color:var(--blue)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:18px 0;padding:20px}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:22px}.subgrid{display:grid;grid-template-columns:1fr;gap:18px}.mini-section{margin:18px 0}.mini-section h3{margin:0 0 10px;font-size:17px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:14px}h2{margin:0 0 8px;font-size:20px;letter-spacing:0}.section-head h2{margin:0}.section-head span,.lead{color:var(--muted)}.lead{font-size:17px;margin:0}
+.sector-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sector{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfb}.sector-top{display:flex;justify-content:space-between;align-items:center}.sector h3{margin:0;font-size:17px}.bar{height:8px;background:#e8eeea;border-radius:99px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#78a85a)}.sector dl{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0}.sector dt{color:var(--muted);font-size:12px}.sector dd{margin:0;font-weight:700}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse;min-width:1080px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top;font-size:14px}th{position:sticky;top:0;background:#edf4f1;color:#243a33;font-weight:700}td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4),td:last-child{text-align:left}.positive{color:var(--green);font-weight:700}.negative{color:var(--red);font-weight:700}.neutral{color:var(--blue)}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700}.score-pill{display:inline-flex;min-width:48px;justify-content:center;padding:3px 8px;border-radius:99px;color:white;font-weight:700}.score-high{background:var(--green)}.score-mid{background:var(--amber)}.score-low{background:var(--red)}.tag{display:inline-block;margin:0 4px 4px 0;padding:3px 7px;border-radius:99px;background:#eef5f3;color:#244139;font-size:12px}
+.toolbar{display:flex;gap:10px;margin-bottom:14px}input,select{height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;font-size:15px}input{flex:1}.watch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.watch-card{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfb}.watch-card header{display:flex;justify-content:space-between;gap:10px;align-items:start}.watch-card h3{margin:0;font-size:17px}.watch-card p{margin:6px 0;color:var(--muted);font-size:13px}.watch-card .risk-text{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;color:#36443f}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.price-grid div{background:#f1f5f3;border-radius:8px;padding:8px}.price-grid span{display:block;color:var(--muted);font-size:12px}.price-grid b{font-size:15px}.summary-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}.summary-list li{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:9px 10px}.warnings{margin:0;padding-left:18px;color:var(--muted)}
+@media (max-width:1000px){.summary-grid,.sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-column,.watch-grid{grid-template-columns:1fr}.topbar{position:static;align-items:flex-start;flex-direction:column}.section-head{align-items:flex-start;flex-direction:column}.toolbar{flex-direction:column}}
+@media (max-width:620px){main{padding:14px}.summary-grid,.sector-grid{grid-template-columns:1fr}.topbar{padding:16px}.topbar h1{font-size:21px}.metric strong{font-size:26px}.panel{padding:14px}.summary-list{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}nav a{font-size:13px;padding:7px 8px}}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">TW After-hours Chip Dashboard</div>
+      <h1>主力大戶籌碼分析報告</h1>
+      <p>2026-05-25｜產生時間 2026-05-25 19:58｜產業族群分類</p>
+    </div>
+    <nav>
+      <a href="#market">大盤</a>
+      <a href="#sectors">族群</a>
+      <a href="#strong">強勢</a>
+      <a href="#weak">弱勢</a>
+      <a href="#watch">觀察</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="market" class="summary-grid">
+      <article class="metric neutral"><span>平均分數</span><strong>48.2</strong><span>全市場多因子平均</span></article>
+      <article class="metric neutral"><span>上漲家數比</span><strong>48.4%</strong><span>普通股上漲比例</span></article>
+      <article class="metric neutral"><span>強勢 / 弱勢</span><strong>265 / 509</strong><span>分數 &gt;=70 / &lt;=35</span></article>
+      <article class="metric neutral"><span>主流族群</span><strong>鋼鐵工業</strong><span>依族群強度排序</span></article>
+    </section>
+
+    <section class="panel two-column">
+      <div>
+        <h2>今日大盤結論</h2>
+        <p class="lead">盤面分歧，等待主流族群表態。 全市場平均分數 48.2，上漲家數比 48.4%，強勢股 265 檔，弱勢股 509 檔。</p>
+      </div>
+      <div>
+        <h2>台指期多空方向</h2>
+        <p class="lead">期權資料未完整，台指期暫以區間看待。</p>
+      </div>
+    </section>
+
+    <section id="sectors" class="panel">
+      <div class="section-head">
+        <h2>族群分類統計</h2>
+        <span>依 FinMind TaiwanStockInfo 產業別分類，缺值才使用名稱與代號備援</span>
+      </div>
+      <div class="sector-grid"><article class="sector">
+  <div class="sector-top"><h3>鋼鐵工業</h3><span class="score-pill score-mid">64.3</span></div>
+  <div class="bar"><i style="width:64%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>傳產循環</dd></div>
+    <div><dt>平均分</dt><dd>67.8</dd></div>
+    <div><dt>成交量</dt><dd>336,883 張</dd></div>
+    <div><dt>法人</dt><dd>63,049 張</dd></div>
+    <div><dt>強/弱</dt><dd>26/2</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>存託憑證</h3><span class="score-pill score-mid">61.1</span></div>
+  <div class="bar"><i style="width:61%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>其他</dd></div>
+    <div><dt>平均分</dt><dd>63.5</dd></div>
+    <div><dt>成交量</dt><dd>26,683 張</dd></div>
+    <div><dt>法人</dt><dd>5,907 張</dd></div>
+    <div><dt>強/弱</dt><dd>1/0</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>其他電子業</h3><span class="score-pill score-mid">54.3</span></div>
+  <div class="bar"><i style="width:54%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>電子科技</dd></div>
+    <div><dt>平均分</dt><dd>54.6</dd></div>
+    <div><dt>成交量</dt><dd>100,178 張</dd></div>
+    <div><dt>法人</dt><dd>-6,351 張</dd></div>
+    <div><dt>強/弱</dt><dd>13/9</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>玻璃陶瓷</h3><span class="score-pill score-mid">49.6</span></div>
+  <div class="bar"><i style="width:50%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>傳產循環</dd></div>
+    <div><dt>平均分</dt><dd>58.5</dd></div>
+    <div><dt>成交量</dt><dd>193,044 張</dd></div>
+    <div><dt>法人</dt><dd>44,316 張</dd></div>
+    <div><dt>強/弱</dt><dd>2/1</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>半導體業</h3><span class="score-pill score-mid">45.9</span></div>
+  <div class="bar"><i style="width:46%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>電子科技</dd></div>
+    <div><dt>平均分</dt><dd>56.5</dd></div>
+    <div><dt>成交量</dt><dd>2,238,265 張</dd></div>
+    <div><dt>法人</dt><dd>222,736 張</dd></div>
+    <div><dt>強/弱</dt><dd>33/16</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>電腦及週邊設備業</h3><span class="score-pill score-mid">44.8</span></div>
+  <div class="bar"><i style="width:45%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>電子科技</dd></div>
+    <div><dt>平均分</dt><dd>57.7</dd></div>
+    <div><dt>成交量</dt><dd>1,097,538 張</dd></div>
+    <div><dt>法人</dt><dd>21,354 張</dd></div>
+    <div><dt>強/弱</dt><dd>27/8</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>光電業</h3><span class="score-pill score-mid">42.4</span></div>
+  <div class="bar"><i style="width:42%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>電子科技</dd></div>
+    <div><dt>平均分</dt><dd>56.3</dd></div>
+    <div><dt>成交量</dt><dd>411,289 張</dd></div>
+    <div><dt>法人</dt><dd>27,432 張</dd></div>
+    <div><dt>強/弱</dt><dd>16/9</dd></div>
+  </dl>
+</article>
+<article class="sector">
+  <div class="sector-top"><h3>電子零組件業</h3><span class="score-pill score-mid">39.8</span></div>
+  <div class="bar"><i style="width:40%"></i></div>
+  <dl>
+    <div><dt>族群大類</dt><dd>電子科技</dd></div>
+    <div><dt>平均分</dt><dd>54.0</dd></div>
+    <div><dt>成交量</dt><dd>2,888,472 張</dd></div>
+    <div><dt>法人</dt><dd>68,607 張</dd></div>
+    <div><dt>強/弱</dt><dd>78/52</dd></div>
+  </dl>
+</article></div>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <h2>法人籌碼交叉比對</h2>
+        <span>外資、投信、自營商買超 Top 10，皆含當日成交量</span>
+      </div>
+      <div class="subgrid">
+        <div class="mini-section"><h3>外資買超 Top 10</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>外資</th><th>法人合計</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2344</span></td><td>華邦電</td><td>半導體業</td><td>128.50</td><td class='positive'>2.80%</td><td>357,612</td><td><span class='score-pill score-high'>78.2</span></td><td>72,092</td><td>77,652</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6770</span></td><td>力積電</td><td>半導體業</td><td>67.60</td><td class='positive'>5.96%</td><td>321,963</td><td><span class='score-pill score-high'>78.2</span></td><td>70,137</td><td>72,097</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2324</span></td><td>仁寶</td><td>電腦及週邊設備業</td><td>34.65</td><td class='positive'>10.00%</td><td>279,874</td><td><span class='score-pill score-high'>75.8</span></td><td>57,815</td><td>28,987</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2317</span></td><td>鴻海</td><td>電子零組件業</td><td>261.00</td><td class='positive'>4.40%</td><td>122,990</td><td><span class='score-pill score-high'>73.6</span></td><td>52,052</td><td>55,787</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2303</span></td><td>聯電</td><td>半導體業</td><td>125.00</td><td class='positive'>9.65%</td><td>340,935</td><td><span class='score-pill score-high'>70.2</span></td><td>48,520</td><td>32,837</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1802</span></td><td>台玻</td><td>玻璃陶瓷</td><td>73.90</td><td class='positive'>4.82%</td><td>185,285</td><td><span class='score-pill score-high'>78.0</span></td><td>43,213</td><td>44,538</td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2002</span></td><td>中鋼</td><td>鋼鐵工業</td><td>19.95</td><td class='positive'>9.92%</td><td>209,932</td><td><span class='score-pill score-high'>83.7</span></td><td>25,870</td><td>29,646</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2882</span></td><td>國泰金</td><td>金融保險業</td><td>81.50</td><td class='positive'>2.26%</td><td>48,981</td><td><span class='score-pill score-mid'>63.5</span></td><td>21,264</td><td>5,786</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2881</span></td><td>富邦金</td><td>金融保險業</td><td>97.70</td><td class='positive'>2.73%</td><td>47,023</td><td><span class='score-pill score-mid'>63.8</span></td><td>19,599</td><td>7,047</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2409</span></td><td>友達</td><td>光電業</td><td>24.40</td><td class='positive'>9.91%</td><td>82,302</td><td><span class='score-pill score-high'>76.5</span></td><td>17,862</td><td>18,948</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+        <div class="mini-section"><h3>投信買超 Top 10</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>投信</th><th>法人合計</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2887</span></td><td>台新新光金</td><td>金融保險業</td><td>23.30</td><td class='negative'>-2.10%</td><td>149,281</td><td><span class='score-pill score-low'>30.7</span></td><td>23,308</td><td>-26,230</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2382</span></td><td>廣達</td><td>電腦及週邊設備業</td><td>316.50</td><td class='positive'>0.16%</td><td>46,775</td><td><span class='score-pill score-mid'>37.4</span></td><td>10,192</td><td>-9,225</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2880</span></td><td>華南金</td><td>金融保險業</td><td>30.55</td><td class='negative'>-4.38%</td><td>66,355</td><td><span class='score-pill score-low'>19.7</span></td><td>10,066</td><td>-16,148</td><td>空頭趨勢</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>爆量後隔日不可追高；外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2618</span></td><td>長榮航</td><td>航運業</td><td>35.45</td><td class='negative'>-0.14%</td><td>66,136</td><td><span class='score-pill score-mid'>46.2</span></td><td>9,266</td><td>-7,359</td><td>多頭趨勢</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2886</span></td><td>兆豐金</td><td>金融保險業</td><td>39.50</td><td class='negative'>-1.00%</td><td>34,301</td><td><span class='score-pill score-mid'>38.1</span></td><td>9,082</td><td>-4,189</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2344</span></td><td>華邦電</td><td>半導體業</td><td>128.50</td><td class='positive'>2.80%</td><td>357,612</td><td><span class='score-pill score-high'>78.2</span></td><td>5,251</td><td>77,652</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3045</span></td><td>台灣大</td><td>電子零組件業</td><td>111.50</td><td class='negative'>-0.45%</td><td>14,632</td><td><span class='score-pill score-mid'>35.2</span></td><td>4,967</td><td>-2,644</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>1216</span></td><td>統一</td><td>食品工業</td><td>71.20</td><td class='negative'>-0.42%</td><td>13,632</td><td><span class='score-pill score-low'>30.7</span></td><td>4,455</td><td>-2,463</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2892</span></td><td>第一金</td><td>金融保險業</td><td>27.60</td><td class='positive'>0.18%</td><td>79,808</td><td><span class='score-pill score-low'>19.7</span></td><td>4,341</td><td>-42,550</td><td>空頭趨勢</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2330</span></td><td>台積電</td><td>半導體業</td><td>2310.00</td><td class='positive'>2.44%</td><td>28,250</td><td><span class='score-pill score-high'>72.0</span></td><td>4,128</td><td>8,272</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+        <div class="mini-section"><h3>自營商買超 Top 10</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>自營商</th><th>法人合計</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2303</span></td><td>聯電</td><td>半導體業</td><td>125.00</td><td class='positive'>9.65%</td><td>340,935</td><td><span class='score-pill score-high'>70.2</span></td><td>5,723</td><td>32,837</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>9105</span></td><td>泰金寶-DR</td><td>存託憑證</td><td>7.42</td><td class='positive'>9.93%</td><td>19,564</td><td><span class='score-pill score-high'>81.6</span></td><td>5,406</td><td>5,734</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2002</span></td><td>中鋼</td><td>鋼鐵工業</td><td>19.95</td><td class='positive'>9.92%</td><td>209,932</td><td><span class='score-pill score-high'>83.7</span></td><td>3,775</td><td>29,646</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2317</span></td><td>鴻海</td><td>電子零組件業</td><td>261.00</td><td class='positive'>4.40%</td><td>122,990</td><td><span class='score-pill score-high'>73.6</span></td><td>2,523</td><td>55,787</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6282</span></td><td>康舒</td><td>電子零組件業</td><td>63.10</td><td class='positive'>9.93%</td><td>83,984</td><td><span class='score-pill score-high'>75.1</span></td><td>1,980</td><td>9,403</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6770</span></td><td>力積電</td><td>半導體業</td><td>67.60</td><td class='positive'>5.96%</td><td>321,963</td><td><span class='score-pill score-high'>78.2</span></td><td>1,933</td><td>72,097</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6116</span></td><td>彩晶</td><td>半導體業</td><td>13.00</td><td class='positive'>9.70%</td><td>43,724</td><td><span class='score-pill score-mid'>61.3</span></td><td>1,653</td><td>2,108</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2887</span></td><td>台新新光金</td><td>金融保險業</td><td>23.30</td><td class='negative'>-2.10%</td><td>149,281</td><td><span class='score-pill score-low'>30.7</span></td><td>1,525</td><td>-26,230</td><td>偏弱整理</td><td><span class="tag">投信加碼</span><span class="tag">外資提款</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>2324</span></td><td>仁寶</td><td>電腦及週邊設備業</td><td>34.65</td><td class='positive'>10.00%</td><td>279,874</td><td><span class='score-pill score-high'>75.8</span></td><td>1,496</td><td>28,987</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>3481</span></td><td>群創</td><td>半導體業</td><td>49.10</td><td class='positive'>9.97%</td><td>68,442</td><td><span class='score-pill score-mid'>50.3</span></td><td>1,369</td><td>-2,665</td><td>多頭趨勢</td><td><span class="tag">外資提款</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <h2>資金流向與延續性</h2>
+        <span>資金流以成交金額、漲跌幅、量比與法人買賣超估算 proxy</span>
+      </div>
+      <div class="mini-section"><h3>前日持續走強 Top 10</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>前日漲跌幅</th><th>量比</th><th>主動流入(百萬)</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上櫃</td><td><span class='code'>5220</span></td><td>萬達光電</td><td>光電業</td><td>24.75</td><td class='positive'>10.00%</td><td>272</td><td><span class='score-pill score-high'>85.6</span></td><td>0.45%</td><td>2.38</td><td>2.1</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>6570</span></td><td>維田</td><td>電腦及週邊設備業</td><td>59.60</td><td class='positive'>9.96%</td><td>504</td><td><span class='score-pill score-high'>85.0</span></td><td>9.83%</td><td>1.56</td><td>8.3</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3004</span></td><td>豐達科</td><td>鋼鐵工業</td><td>140.50</td><td class='positive'>7.66%</td><td>1,668</td><td><span class='score-pill score-high'>83.7</span></td><td>3.57%</td><td>1.82</td><td>49.6</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2405</span></td><td>輔信</td><td>電腦及週邊設備業</td><td>17.05</td><td class='positive'>3.02%</td><td>8,397</td><td><span class='score-pill score-high'>83.6</span></td><td>3.44%</td><td>2.82</td><td>22.6</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2495</span></td><td>普安</td><td>電腦及週邊設備業</td><td>46.15</td><td class='positive'>4.41%</td><td>17,745</td><td><span class='score-pill score-high'>83.5</span></td><td>8.73%</td><td>2.08</td><td>133.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3376</span></td><td>新日興</td><td>電子零組件業</td><td>220.50</td><td class='positive'>5.00%</td><td>13,387</td><td><span class='score-pill score-high'>83.0</span></td><td>0.24%</td><td>2.37</td><td>770.2</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2421</span></td><td>建準</td><td>電子零組件業</td><td>162.50</td><td class='positive'>2.52%</td><td>15,535</td><td><span class='score-pill score-high'>83.0</span></td><td>4.28%</td><td>2.07</td><td>378.9</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>3317</span></td><td>尼克森</td><td>半導體業</td><td>83.70</td><td class='positive'>9.99%</td><td>11,166</td><td><span class='score-pill score-high'>81.9</span></td><td>0.53%</td><td>1.24</td><td>209.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>9105</span></td><td>泰金寶-DR</td><td>存託憑證</td><td>7.42</td><td class='positive'>9.93%</td><td>19,564</td><td><span class='score-pill score-high'>81.6</span></td><td>9.93%</td><td>0.76</td><td>25.8</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>8054</span></td><td>安國</td><td>半導體業</td><td>116.00</td><td class='positive'>4.04%</td><td>6,217</td><td><span class='score-pill score-high'>81.4</span></td><td>1.83%</td><td>1.86</td><td>135.5</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+      <div class="mini-section"><h3>資金族群流入 Top 10</h3><div class='table-wrap'><table><thead><tr><th>族群</th><th>族群大類</th><th>強度</th><th>漲跌幅</th><th>成交量</th><th>法人</th><th>外資</th><th>投信</th><th>自營商</th><th>檔數</th></tr></thead><tbody><tr><td>半導體業</td><td>電子科技</td><td>45.9</td><td class='positive'>3.02%</td><td>2,238,265</td><td>222,736</td><td>233,892</td><td>-29,418</td><td>18,261</td><td>149</td></tr>
+<tr><td>電子零組件業</td><td>電子科技</td><td>39.8</td><td class='positive'>2.24%</td><td>2,888,472</td><td>68,607</td><td>43,765</td><td>7,545</td><td>17,298</td><td>397</td></tr>
+<tr><td>鋼鐵工業</td><td>傳產循環</td><td>64.3</td><td class='positive'>3.73%</td><td>336,883</td><td>63,049</td><td>58,750</td><td>-661</td><td>4,959</td><td>50</td></tr>
+<tr><td>玻璃陶瓷</td><td>傳產循環</td><td>49.6</td><td class='positive'>2.73%</td><td>193,044</td><td>44,316</td><td>42,970</td><td>11</td><td>1,335</td><td>5</td></tr>
+<tr><td>光電業</td><td>電子科技</td><td>42.4</td><td class='positive'>2.38%</td><td>411,289</td><td>27,432</td><td>24,505</td><td>855</td><td>2,072</td><td>73</td></tr>
+<tr><td>電腦及週邊設備業</td><td>電子科技</td><td>44.8</td><td class='positive'>2.35%</td><td>1,097,538</td><td>21,354</td><td>33,388</td><td>-18,284</td><td>6,251</td><td>101</td></tr>
+<tr><td>電器電纜</td><td>機電設備</td><td>34.5</td><td class='positive'>1.22%</td><td>90,202</td><td>14,825</td><td>15,120</td><td>-28</td><td>-268</td><td>17</td></tr>
+<tr><td>存託憑證</td><td>其他</td><td>61.1</td><td class='positive'>5.86%</td><td>26,683</td><td>5,907</td><td>501</td><td>0</td><td>5,406</td><td>4</td></tr>
+<tr><td>塑膠工業</td><td>傳產循環</td><td>17.6</td><td class='negative'>-0.23%</td><td>133,499</td><td>2,549</td><td>2,321</td><td>15</td><td>212</td><td>26</td></tr>
+<tr><td>通信網路業</td><td>電子科技</td><td>33.5</td><td class='positive'>1.41%</td><td>137,957</td><td>1,857</td><td>84</td><td>681</td><td>1,092</td><td>62</td></tr></tbody></table></div></div>
+      <div class="mini-section"><h3>資金族群流出 Top 10</h3><div class='table-wrap'><table><thead><tr><th>族群</th><th>族群大類</th><th>強度</th><th>漲跌幅</th><th>成交量</th><th>法人</th><th>外資</th><th>投信</th><th>自營商</th><th>檔數</th></tr></thead><tbody><tr><td>金融保險業</td><td>金融</td><td>12.0</td><td class='positive'>0.20%</td><td>838,748</td><td>-173,099</td><td>-166,473</td><td>-5,704</td><td>-923</td><td>41</td></tr>
+<tr><td>其他</td><td>其他</td><td>19.7</td><td class='positive'>0.27%</td><td>228,189</td><td>-30,815</td><td>-33,860</td><td>2,455</td><td>590</td><td>89</td></tr>
+<tr><td>水泥工業</td><td>傳產循環</td><td>6.4</td><td class='negative'>-0.51%</td><td>62,792</td><td>-23,995</td><td>-23,712</td><td>-528</td><td>245</td><td>7</td></tr>
+<tr><td>建材營造</td><td>資產營建</td><td>4.2</td><td class='negative'>-1.05%</td><td>107,812</td><td>-21,415</td><td>-20,462</td><td>-769</td><td>-184</td><td>88</td></tr>
+<tr><td>航運業</td><td>傳產循環</td><td>22.6</td><td class='positive'>0.08%</td><td>268,805</td><td>-12,895</td><td>-26,308</td><td>13,812</td><td>-399</td><td>34</td></tr>
+<tr><td>電子通路業</td><td>電子科技</td><td>31.8</td><td class='positive'>1.10%</td><td>169,225</td><td>-10,914</td><td>-5,243</td><td>-5,157</td><td>-513</td><td>34</td></tr>
+<tr><td>運動休閒</td><td>民生消費</td><td>6.5</td><td class='negative'>-0.61%</td><td>25,525</td><td>-10,545</td><td>-9,601</td><td>-927</td><td>-17</td><td>27</td></tr>
+<tr><td>生技醫療業</td><td>生技醫療</td><td>8.6</td><td class='negative'>-0.84%</td><td>85,401</td><td>-9,891</td><td>-9,979</td><td>1</td><td>88</td><td>155</td></tr>
+<tr><td>其他電子業</td><td>電子科技</td><td>54.3</td><td class='positive'>7.71%</td><td>100,178</td><td>-6,351</td><td>-5,224</td><td>-1,096</td><td>-31</td><td>60</td></tr>
+<tr><td>食品工業</td><td>民生消費</td><td>8.4</td><td class='negative'>-0.45%</td><td>34,530</td><td>-5,612</td><td>-10,021</td><td>4,341</td><td>68</td><td>33</td></tr></tbody></table></div></div>
+      <div class="mini-section"><h3>資金當日主動流入 Top 20</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>成交金額(百萬)</th><th>主動流入(百萬)</th><th>法人金額(百萬)</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2330</span></td><td>台積電</td><td>半導體業</td><td>2310.00</td><td class='positive'>2.44%</td><td>28,250</td><td><span class='score-pill score-high'>72.0</span></td><td>65,257.5</td><td>7,906.5</td><td>19,107.4</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2317</span></td><td>鴻海</td><td>電子零組件業</td><td>261.00</td><td class='positive'>4.40%</td><td>122,990</td><td><span class='score-pill score-high'>73.6</span></td><td>32,100.4</td><td>6,841.3</td><td>14,560.5</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2308</span></td><td>台達電</td><td>電子零組件業</td><td>2290.00</td><td class='positive'>9.31%</td><td>12,049</td><td><span class='score-pill score-high'>71.2</span></td><td>27,592.2</td><td>6,630.1</td><td>11,261.2</td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2303</span></td><td>聯電</td><td>半導體業</td><td>125.00</td><td class='positive'>9.65%</td><td>340,935</td><td><span class='score-pill score-high'>70.2</span></td><td>42,616.9</td><td>6,508.0</td><td>4,104.6</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2344</span></td><td>華邦電</td><td>半導體業</td><td>128.50</td><td class='positive'>2.80%</td><td>357,612</td><td><span class='score-pill score-high'>78.2</span></td><td>45,953.1</td><td>5,398.2</td><td>9,978.3</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2327</span></td><td>國巨*</td><td>電子零組件業</td><td>691.00</td><td class='positive'>9.86%</td><td>67,663</td><td><span class='score-pill score-mid'>65.2</span></td><td>46,755.1</td><td>5,368.9</td><td>1,542.0</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>6770</span></td><td>力積電</td><td>半導體業</td><td>67.60</td><td class='positive'>5.96%</td><td>321,963</td><td><span class='score-pill score-high'>78.2</span></td><td>21,764.7</td><td>3,641.9</td><td>4,873.8</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2313</span></td><td>華通</td><td>電子零組件業</td><td>298.50</td><td class='positive'>7.37%</td><td>100,470</td><td><span class='score-pill score-mid'>66.2</span></td><td>29,990.3</td><td>3,604.3</td><td>3,346.1</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2324</span></td><td>仁寶</td><td>電腦及週邊設備業</td><td>34.65</td><td class='positive'>10.00%</td><td>279,874</td><td><span class='score-pill score-high'>75.8</span></td><td>9,697.6</td><td>3,260.8</td><td>1,004.4</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上櫃</td><td><span class='code'>3211</span></td><td>順達</td><td>電腦及週邊設備業</td><td>426.50</td><td class='positive'>9.92%</td><td>21,177</td><td><span class='score-pill score-high'>79.9</span></td><td>9,032.0</td><td>3,000.9</td><td>3,228.5</td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2449</span></td><td>京元電子</td><td>電子零組件業</td><td>317.00</td><td class='positive'>7.09%</td><td>53,596</td><td><span class='score-pill score-mid'>66.0</span></td><td>16,989.9</td><td>2,441.4</td><td>2,324.4</td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1802</span></td><td>台玻</td><td>玻璃陶瓷</td><td>73.90</td><td class='positive'>4.82%</td><td>185,285</td><td><span class='score-pill score-high'>78.0</span></td><td>13,692.6</td><td>2,333.1</td><td>3,291.4</td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6442</span></td><td>光聖</td><td>光電業</td><td>2060.00</td><td class='positive'>9.87%</td><td>5,251</td><td><span class='score-pill score-mid'>68.4</span></td><td>10,817.1</td><td>2,318.6</td><td>1,110.5</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4919</span></td><td>新唐</td><td>電子零組件業</td><td>219.00</td><td class='positive'>9.77%</td><td>55,367</td><td><span class='score-pill score-high'>73.1</span></td><td>12,125.4</td><td>2,174.9</td><td>672.3</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>6147</span></td><td>頎邦</td><td>半導體業</td><td>237.00</td><td class='positive'>9.98%</td><td>53,356</td><td><span class='score-pill score-high'>76.8</span></td><td>12,645.4</td><td>1,822.6</td><td>2,225.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2356</span></td><td>英業達</td><td>電腦及週邊設備業</td><td>65.40</td><td class='positive'>9.92%</td><td>135,283</td><td><span class='score-pill score-mid'>53.9</span></td><td>8,847.5</td><td>1,702.3</td><td>-959.2</td><td>多頭趨勢</td><td><span class="tag">外資提款</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6271</span></td><td>同欣電</td><td>電子零組件業</td><td>243.50</td><td class='positive'>7.51%</td><td>31,053</td><td><span class='score-pill score-mid'>55.4</span></td><td>7,561.4</td><td>1,571.3</td><td>-375.2</td><td>多頭趨勢</td><td><span class="tag">外資提款</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2002</span></td><td>中鋼</td><td>鋼鐵工業</td><td>19.95</td><td class='positive'>9.92%</td><td>209,932</td><td><span class='score-pill score-high'>83.7</span></td><td>4,188.1</td><td>1,453.1</td><td>591.4</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2383</span></td><td>台光電</td><td>電子零組件業</td><td>5505.00</td><td class='positive'>9.99%</td><td>1,801</td><td><span class='score-pill score-high'>78.2</span></td><td>9,914.5</td><td>1,395.2</td><td>1,980.8</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2404</span></td><td>漢唐</td><td>電子零組件業</td><td>1245.00</td><td class='positive'>7.79%</td><td>5,552</td><td><span class='score-pill score-high'>75.0</span></td><td>6,912.2</td><td>1,390.8</td><td>2,357.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+      <div class="mini-section"><h3>資金止跌承接個股</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>量比</th><th>主動流入(百萬)</th><th>法人合計</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2114</span></td><td>鑫永銓</td><td>橡膠工業</td><td>91.60</td><td class='positive'>1.66%</td><td>149</td><td><span class='score-pill score-high'>80.6</span></td><td>1.52</td><td>1.3</td><td>30</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2069</span></td><td>運錩</td><td>鋼鐵工業</td><td>19.55</td><td class='positive'>1.82%</td><td>825</td><td><span class='score-pill score-high'>79.9</span></td><td>1.56</td><td>2.0</td><td>231</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4532</span></td><td>瑞智</td><td>電機機械</td><td>23.95</td><td class='positive'>2.35%</td><td>1,178</td><td><span class='score-pill score-high'>77.1</span></td><td>1.18</td><td>3.7</td><td>348</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2606</span></td><td>裕民</td><td>航運業</td><td>67.90</td><td class='positive'>3.82%</td><td>7,675</td><td><span class='score-pill score-high'>76.5</span></td><td>1.11</td><td>105.1</td><td>3,494</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2610</span></td><td>華航</td><td>航運業</td><td>18.85</td><td class='positive'>1.62%</td><td>41,458</td><td><span class='score-pill score-high'>75.1</span></td><td>1.41</td><td>100.3</td><td>12,505</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1907</span></td><td>永豐餘</td><td>造紙工業</td><td>24.85</td><td class='positive'>1.64%</td><td>1,076</td><td><span class='score-pill score-high'>74.3</span></td><td>0.79</td><td>2.5</td><td>253</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2008</span></td><td>高興昌</td><td>鋼鐵工業</td><td>27.75</td><td class='positive'>0.73%</td><td>20</td><td><span class='score-pill score-high'>74.3</span></td><td>0.95</td><td>0.1</td><td>6</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4581</span></td><td>光隆精密-KY</td><td>汽車工業</td><td>50.40</td><td class='positive'>1.92%</td><td>36</td><td><span class='score-pill score-high'>74.1</span></td><td>1.53</td><td>0.3</td><td>16</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6691</span></td><td>洋基工程</td><td>電子零組件業</td><td>646.00</td><td class='positive'>2.87%</td><td>639</td><td><span class='score-pill score-high'>73.6</span></td><td>1.36</td><td>64.8</td><td>215</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>7703</span></td><td>銳澤</td><td>其他電子業</td><td>214.50</td><td class='positive'>2.63%</td><td>166</td><td><span class='score-pill score-high'>73.1</span></td><td>0.95</td><td>4.3</td><td>46</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2330</span></td><td>台積電</td><td>半導體業</td><td>2310.00</td><td class='positive'>2.44%</td><td>28,250</td><td><span class='score-pill score-high'>72.0</span></td><td>0.77</td><td>7,906.5</td><td>8,272</td><td>偏多整理</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2387</span></td><td>精元</td><td>電腦及週邊設備業</td><td>39.95</td><td class='positive'>0.76%</td><td>792</td><td><span class='score-pill score-high'>71.5</span></td><td>1.11</td><td>2.5</td><td>158</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3432</span></td><td>台端</td><td>電子零組件業</td><td>19.90</td><td class='positive'>3.92%</td><td>283</td><td><span class='score-pill score-high'>71.2</span></td><td>1.18</td><td>1.1</td><td>119</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2739</span></td><td>寒舍</td><td>觀光餐旅</td><td>35.00</td><td class='positive'>0.86%</td><td>116</td><td><span class='score-pill score-high'>70.9</span></td><td>1.01</td><td>0.6</td><td>43</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4106</span></td><td>雃博</td><td>生技醫療業</td><td>23.35</td><td class='positive'>0.21%</td><td>155</td><td><span class='score-pill score-high'>70.7</span></td><td>0.85</td><td>0.3</td><td>41</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4930</span></td><td>燦星網</td><td>電器電纜</td><td>17.30</td><td class='positive'>3.59%</td><td>147</td><td><span class='score-pill score-mid'>69.5</span></td><td>1.22</td><td>0.3</td><td>35</td><td>偏弱整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1103</span></td><td>嘉泥</td><td>水泥工業</td><td>13.20</td><td class='positive'>0.76%</td><td>413</td><td><span class='score-pill score-mid'>69.4</span></td><td>1.34</td><td>0.7</td><td>134</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2945</span></td><td>三商家購</td><td>貿易百貨</td><td>41.35</td><td class='positive'>0.98%</td><td>18</td><td><span class='score-pill score-mid'>69.4</span></td><td>0.05</td><td>0.1</td><td>5</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>4503</span></td><td>金雨</td><td>電機機械</td><td>44.00</td><td class='positive'>1.85%</td><td>353</td><td><span class='score-pill score-mid'>69.0</span></td><td>1.07</td><td>1.4</td><td>68</td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2430</span></td><td>燦坤</td><td>電子通路業</td><td>18.45</td><td class='positive'>0.82%</td><td>189</td><td><span class='score-pill score-mid'>68.9</span></td><td>1.26</td><td>0.6</td><td>89</td><td>偏弱整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+      <div class="mini-section"><h3>量縮漲個股</h3><div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>量比</th><th>主動流入(百萬)</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>9105</span></td><td>泰金寶-DR</td><td>存託憑證</td><td>7.42</td><td class='positive'>9.93%</td><td>19,564</td><td><span class='score-pill score-high'>81.6</span></td><td>0.76</td><td>25.8</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4949</span></td><td>有成精密</td><td>光電業</td><td>108.00</td><td class='positive'>9.98%</td><td>2,313</td><td><span class='score-pill score-high'>78.9</span></td><td>0.74</td><td>37.9</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2383</span></td><td>台光電</td><td>電子零組件業</td><td>5505.00</td><td class='positive'>9.99%</td><td>1,801</td><td><span class='score-pill score-high'>78.2</span></td><td>0.71</td><td>1,395.2</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6695</span></td><td>芯鼎</td><td>半導體業</td><td>62.20</td><td class='positive'>9.89%</td><td>2,024</td><td><span class='score-pill score-high'>77.1</span></td><td>0.60</td><td>17.5</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>6831</span></td><td>邁科</td><td>電腦及週邊設備業</td><td>792.00</td><td class='positive'>0.76%</td><td>530</td><td><span class='score-pill score-high'>77.0</span></td><td>0.31</td><td>57.1</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2409</span></td><td>友達</td><td>光電業</td><td>24.40</td><td class='positive'>9.91%</td><td>82,302</td><td><span class='score-pill score-high'>76.5</span></td><td>0.27</td><td>261.3</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>8069</span></td><td>元太</td><td>光電業</td><td>235.00</td><td class='positive'>4.91%</td><td>5,221</td><td><span class='score-pill score-high'>76.5</span></td><td>0.30</td><td>149.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span><span class="tag">投信加碼</span></td><td>外資與投信不同步</td></tr>
+<tr><td>上市</td><td><span class='code'>6196</span></td><td>帆宣</td><td>電子零組件業</td><td>486.00</td><td class='positive'>9.95%</td><td>1,790</td><td><span class='score-pill score-high'>76.3</span></td><td>0.51</td><td>124.4</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>6207</span></td><td>雷科</td><td>電子零組件業</td><td>98.80</td><td class='positive'>9.90%</td><td>9,968</td><td><span class='score-pill score-high'>76.3</span></td><td>0.57</td><td>161.1</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>6173</span></td><td>信昌電</td><td>電子零組件業</td><td>211.50</td><td class='positive'>9.87%</td><td>683</td><td><span class='score-pill score-high'>76.3</span></td><td>0.09</td><td>21.8</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3026</span></td><td>禾伸堂</td><td>電子零組件業</td><td>523.00</td><td class='positive'>9.76%</td><td>1,786</td><td><span class='score-pill score-high'>76.3</span></td><td>0.22</td><td>183.8</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>5243</span></td><td>乙盛-KY</td><td>電子零組件業</td><td>135.00</td><td class='positive'>9.76%</td><td>2,714</td><td><span class='score-pill score-high'>76.3</span></td><td>0.43</td><td>50.6</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2464</span></td><td>盟立</td><td>電子零組件業</td><td>158.00</td><td class='positive'>9.72%</td><td>8,728</td><td><span class='score-pill score-high'>76.3</span></td><td>0.32</td><td>201.7</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>8261</span></td><td>富鼎</td><td>電子零組件業</td><td>176.00</td><td class='positive'>10.00%</td><td>4,849</td><td><span class='score-pill score-high'>76.0</span></td><td>0.56</td><td>107.2</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>3090</span></td><td>日電貿</td><td>電子零組件業</td><td>236.50</td><td class='positive'>10.00%</td><td>4,254</td><td><span class='score-pill score-high'>75.6</span></td><td>0.19</td><td>117.9</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2301</span></td><td>光寶科</td><td>電腦及週邊設備業</td><td>227.50</td><td class='positive'>9.90%</td><td>33,551</td><td><span class='score-pill score-high'>75.6</span></td><td>0.74</td><td>1,239.2</td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1907</span></td><td>永豐餘</td><td>造紙工業</td><td>24.85</td><td class='positive'>1.64%</td><td>1,076</td><td><span class='score-pill score-high'>74.3</span></td><td>0.79</td><td>2.5</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1904</span></td><td>正隆</td><td>造紙工業</td><td>19.30</td><td class='positive'>1.05%</td><td>2,354</td><td><span class='score-pill score-high'>74.3</span></td><td>0.75</td><td>5.4</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>4760</span></td><td>勤凱</td><td>其他電子業</td><td>375.00</td><td class='positive'>9.97%</td><td>804</td><td><span class='score-pill score-high'>74.1</span></td><td>0.38</td><td>30.9</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>8097</span></td><td>常珵</td><td>通信網路業</td><td>58.00</td><td class='positive'>1.22%</td><td>66</td><td><span class='score-pill score-high'>74.1</span></td><td>0.76</td><td>0.5</td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div></div>
+    </section>
+
+    <section id="strong" class="panel">
+      <div class="section-head">
+        <h2>最強 10 檔股票</h2>
+        <span>強者恆強候選，隔日仍需看開盤承接</span>
+      </div>
+      <div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>2032</span></td><td>新鋼</td><td>鋼鐵工業</td><td>18.15</td><td class='positive'>10.00%</td><td>3,004</td><td><span class='score-pill score-high'>88.4</span></td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2349</span></td><td>錸德</td><td>電子零組件業</td><td>14.30</td><td class='positive'>10.00%</td><td>17,477</td><td><span class='score-pill score-high'>86.5</span></td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上櫃</td><td><span class='code'>5015</span></td><td>華祺</td><td>鋼鐵工業</td><td>24.20</td><td class='positive'>10.00%</td><td>119</td><td><span class='score-pill score-high'>86.1</span></td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2014</span></td><td>中鴻</td><td>鋼鐵工業</td><td>18.85</td><td class='positive'>9.91%</td><td>27,164</td><td><span class='score-pill score-high'>86.1</span></td><td>偏多整理</td><td><span class="tag">法人偏多</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>2007</span></td><td>燁興</td><td>鋼鐵工業</td><td>7.66</td><td class='positive'>9.90%</td><td>1,444</td><td><span class='score-pill score-high'>85.9</span></td><td>偏多整理</td><td><span class="tag">籌碼中性</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上櫃</td><td><span class='code'>5220</span></td><td>萬達光電</td><td>光電業</td><td>24.75</td><td class='positive'>10.00%</td><td>272</td><td><span class='score-pill score-high'>85.6</span></td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>1713</span></td><td>國化</td><td>化學工業</td><td>49.00</td><td class='positive'>2.51%</td><td>518</td><td><span class='score-pill score-high'>85.4</span></td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上市</td><td><span class='code'>4770</span></td><td>上品</td><td>化學工業</td><td>251.00</td><td class='positive'>9.85%</td><td>1,968</td><td><span class='score-pill score-high'>85.4</span></td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>爆量後隔日不可追高</td></tr>
+<tr><td>上櫃</td><td><span class='code'>6570</span></td><td>維田</td><td>電腦及週邊設備業</td><td>59.60</td><td class='positive'>9.96%</td><td>504</td><td><span class='score-pill score-high'>85.0</span></td><td>多頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>4927</span></td><td>泰鼎-KY</td><td>電子零組件業</td><td>61.90</td><td class='positive'>9.95%</td><td>24,148</td><td><span class='score-pill score-high'>84.3</span></td><td>多頭趨勢</td><td><span class="tag">法人偏多</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div>
+    </section>
+
+    <section id="weak" class="panel">
+      <div class="section-head">
+        <h2>最弱 10 檔股票</h2>
+        <span>弱者續弱候選，反彈無量偏空看待</span>
+      </div>
+      <div class='table-wrap'><table><thead><tr><th>市場</th><th>代號</th><th>名稱</th><th>族群</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead><tbody><tr><td>上市</td><td><span class='code'>9921</span></td><td>巨大</td><td>運動休閒</td><td>69.50</td><td class='negative'>-1.14%</td><td>1,765</td><td><span class='score-pill score-low'>14.6</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>9931</span></td><td>欣高</td><td>油電燃氣業</td><td>33.85</td><td class='neutral'>0.00%</td><td>52</td><td><span class='score-pill score-low'>14.6</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2705</span></td><td>六福</td><td>觀光餐旅</td><td>15.20</td><td class='positive'>0.33%</td><td>227</td><td><span class='score-pill score-low'>14.8</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>8066</span></td><td>來思達</td><td>居家生活</td><td>16.50</td><td class='negative'>-1.79%</td><td>22</td><td><span class='score-pill score-low'>15.1</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>9907</span></td><td>統一實</td><td>其他</td><td>15.95</td><td class='neutral'>0.00%</td><td>2,994</td><td><span class='score-pill score-low'>16.1</span></td><td>空頭趨勢</td><td><span class="tag">外資提款</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上櫃</td><td><span class='code'>4556</span></td><td>旭然</td><td>其他</td><td>39.30</td><td class='negative'>-4.38%</td><td>469</td><td><span class='score-pill score-low'>16.1</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>2501</span></td><td>國建</td><td>建材營造</td><td>21.80</td><td class='negative'>-1.13%</td><td>3,198</td><td><span class='score-pill score-low'>16.3</span></td><td>空頭趨勢</td><td><span class="tag">外資提款</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>5534</span></td><td>長虹</td><td>建材營造</td><td>75.00</td><td class='negative'>-0.66%</td><td>830</td><td><span class='score-pill score-low'>16.3</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>5531</span></td><td>鄉林</td><td>建材營造</td><td>7.65</td><td class='negative'>-0.91%</td><td>889</td><td><span class='score-pill score-low'>16.3</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr>
+<tr><td>上市</td><td><span class='code'>5522</span></td><td>遠雄</td><td>建材營造</td><td>69.20</td><td class='negative'>-0.43%</td><td>883</td><td><span class='score-pill score-low'>16.3</span></td><td>空頭趨勢</td><td><span class="tag">籌碼中性</span></td><td>籌碼與量價暫無明顯警訊</td></tr></tbody></table></div>
+    </section>
+
+    <section id="watch" class="panel">
+      <div class="section-head">
+        <h2>明日觀察名單</h2>
+        <span>只保留分類、強弱、觸發原因與風險提醒</span>
+      </div>
+      <div class="toolbar">
+        <input id="stockSearch" type="search" placeholder="搜尋代號、名稱、族群">
+        <select id="sectorFilter">
+          <option value="">全部族群</option>
+        </select>
+      </div>
+      <div id="watchCards" class="watch-grid"></div>
+    </section>
+
+    <section class="panel two-column">
+      <div>
+        <h2>篩選條件摘要</h2>
+        <ul class="summary-list"><li><span>主力連續買超股</span><strong>782</strong></li>
+<li><span>投信連續買超股</span><strong>42</strong></li>
+<li><span>外資轉買股</span><strong>114</strong></li>
+<li><span>放量突破股</span><strong>254</strong></li>
+<li><span>創高股</span><strong>152</strong></li>
+<li><span>W 型態突破股</span><strong>257</strong></li>
+<li><span>假突破轉弱股</span><strong>18</strong></li>
+<li><span>可放空弱勢股</span><strong>122</strong></li>
+<li><span>有期貨的股票</span><strong>20</strong></li>
+<li><span>有權證的股票</span><strong>0</strong></li></ul>
+      </div>
+      <div>
+        <h2>資料品質</h2>
+        <ul class="warnings"><li>借券賣出：https://www.twse.com.tw/rwd/zh/SBL/TWT93U?date=20260525&amp;response=json Expecting value: line 1 column 1 (char 0)；https://www.twse.com.tw/exchangeReport/TWT93U?date=20260525&amp;response=json 沒有可辨識表格</li></ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const watchStocks = [{"code": "2032", "name": "新鋼", "sector": "鋼鐵工業", "score": 88.4, "close": 18.15, "pct_change": 10.0, "volume": 3004, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "2349", "name": "錸德", "sector": "電子零組件業", "score": 86.5, "close": 14.3, "pct_change": 10.0, "volume": 17477, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "2014", "name": "中鴻", "sector": "鋼鐵工業", "score": 86.1, "close": 18.85, "pct_change": 9.912536443148687, "volume": 27164, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "5015", "name": "華祺", "sector": "鋼鐵工業", "score": 86.1, "close": 24.2, "pct_change": 10.0, "volume": 119, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "2007", "name": "燁興", "sector": "鋼鐵工業", "score": 85.9, "close": 7.66, "pct_change": 9.899569583931132, "volume": 1444, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "5220", "name": "萬達光電", "sector": "光電業", "score": 85.6, "close": 24.75, "pct_change": 10.0, "volume": 272, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "1713", "name": "國化", "sector": "化學工業", "score": 85.4, "close": 49.0, "pct_change": 2.510460251046025, "volume": 518, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "4770", "name": "上品", "sector": "化學工業", "score": 85.4, "close": 251.0, "pct_change": 9.846827133479213, "volume": 1968, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "6570", "name": "維田", "sector": "電腦及週邊設備業", "score": 85.0, "close": 59.6, "pct_change": 9.96309963099631, "volume": 504, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "4927", "name": "泰鼎-KY", "sector": "電子零組件業", "score": 84.3, "close": 61.9, "pct_change": 9.946714031971581, "volume": 24148, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3413", "name": "京鼎", "sector": "電子零組件業", "score": 84.3, "close": 349.0, "pct_change": 7.384615384615385, "volume": 4721, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3015", "name": "全漢", "sector": "電子零組件業", "score": 83.9, "close": 52.0, "pct_change": 0.9708737864077669, "volume": 699, "reason": "主力買超、創高", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3004", "name": "豐達科", "sector": "鋼鐵工業", "score": 83.7, "close": 140.5, "pct_change": 7.662835249042145, "volume": 1668, "reason": "主力買超、放量突破、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "2002", "name": "中鋼", "sector": "鋼鐵工業", "score": 83.7, "close": 19.95, "pct_change": 9.917355371900829, "volume": 209932, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "6117", "name": "迎廣", "sector": "電腦及週邊設備業", "score": 83.6, "close": 91.9, "pct_change": 3.8418079096045195, "volume": 2262, "reason": "主力買超、放量突破、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "2405", "name": "輔信", "sector": "電腦及週邊設備業", "score": 83.6, "close": 17.05, "pct_change": 3.021148036253776, "volume": 8397, "reason": "主力買超、外資轉買、放量突破、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "3483", "name": "力致", "sector": "電腦及週邊設備業", "score": 83.6, "close": 99.2, "pct_change": 4.8625792811839315, "volume": 2020, "reason": "主力買超、放量突破、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "2495", "name": "普安", "sector": "電腦及週邊設備業", "score": 83.5, "close": 46.15, "pct_change": 4.411764705882353, "volume": 17745, "reason": "主力買超、外資轉買、放量突破、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3152", "name": "璟德", "sector": "通信網路業", "score": 83.5, "close": 199.5, "pct_change": 9.917355371900827, "volume": 2681, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "2028", "name": "威致", "sector": "鋼鐵工業", "score": 83.5, "close": 18.25, "pct_change": 6.725146198830408, "volume": 612, "reason": "主力買超、放量突破、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "6125", "name": "廣運", "sector": "光電業", "score": 83.2, "close": 65.4, "pct_change": 9.915966386554622, "volume": 8013, "reason": "主力買超、外資轉買、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "2421", "name": "建準", "sector": "電子零組件業", "score": 83.0, "close": 162.5, "pct_change": 2.5236593059936907, "volume": 15535, "reason": "主力買超、投信買超、外資轉買、放量突破、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "4755", "name": "三福化", "sector": "化學工業", "score": 83.0, "close": 153.0, "pct_change": 4.436860068259386, "volume": 1209, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3376", "name": "新日興", "sector": "電子零組件業", "score": 83.0, "close": 220.5, "pct_change": 5.0, "volume": 13387, "reason": "主力買超、外資轉買、放量突破、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3168", "name": "眾福科", "sector": "電子零組件業", "score": 82.8, "close": 49.85, "pct_change": 9.922822491730981, "volume": 501, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "3617", "name": "碩天", "sector": "其他電子業", "score": 82.7, "close": 205.5, "pct_change": 2.493765586034913, "volume": 566, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "6937", "name": "天虹", "sector": "其他", "score": 82.4, "close": 351.5, "pct_change": 8.65533230293663, "volume": 2500, "reason": "主力買超、放量突破、創高、W突破", "risk_note": "爆量後隔日不可追高"}, {"code": "2034", "name": "允強", "sector": "鋼鐵工業", "score": 82.3, "close": 20.8, "pct_change": 5.05050505050505, "volume": 3498, "reason": "主力買超、外資轉買、放量突破", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "3317", "name": "尼克森", "sector": "半導體業", "score": 81.9, "close": 83.7, "pct_change": 9.986859395532193, "volume": 11166, "reason": "主力買超、外資轉買、創高", "risk_note": "籌碼與量價暫無明顯警訊"}, {"code": "9105", "name": "泰金寶-DR", "sector": "存託憑證", "score": 81.6, "close": 7.42, "pct_change": 9.925925925925927, "volume": 19564, "reason": "主力買超、創高", "risk_note": "籌碼與量價暫無明顯警訊"}];
+    
+const container = document.getElementById('watchCards');
+const search = document.getElementById('stockSearch');
+const sectorFilter = document.getElementById('sectorFilter');
+const sectors = [...new Set(watchStocks.map(s => s.sector).filter(Boolean))].sort();
+for (const sector of sectors) {
+  const option = document.createElement('option');
+  option.value = sector;
+  option.textContent = sector;
+  sectorFilter.appendChild(option);
+}
+function scoreClass(score) {
+  if (score >= 70) return 'score-high';
+  if (score <= 35) return 'score-low';
+  return 'score-mid';
+}
+function render() {
+  const q = search.value.trim().toLowerCase();
+  const sector = sectorFilter.value;
+  const filtered = watchStocks.filter(s => {
+    const text = `${s.code || ''} ${s.name || ''} ${s.sector || ''}`.toLowerCase();
+    return (!q || text.includes(q)) && (!sector || s.sector === sector);
+  });
+  container.innerHTML = filtered.map(s => `
+    <article class="watch-card">
+      <header>
+        <div>
+          <h3><span class="code">${s.code}</span> ${s.name}</h3>
+          <p>${s.sector || '其他'}｜成交量 ${Number(s.volume || 0).toLocaleString()} 張｜${s.reason || '觀察'}</p>
+        </div>
+        <span class="score-pill ${scoreClass(Number(s.score || 0))}">${Number(s.score || 0).toFixed(1)}</span>
+      </header>
+      <p class="risk-text">${s.risk_note || '依籌碼與量價變化追蹤'}</p>
+    </article>
+  `).join('') || '<p class="lead">沒有符合搜尋條件的股票。</p>';
+}
+search.addEventListener('input', render);
+sectorFilter.addEventListener('change', render);
+render();
+
+  </script>
+</body>
+</html>

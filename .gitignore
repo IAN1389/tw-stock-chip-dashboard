@@ -1,0 +1,14 @@
+.venv/
+.env
+*.pfx
+*.p12
+__pycache__/
+*.pyc
+log/
+data/raw/
+data/processed/
+reports/*.csv
+reports/*.md
+reports/*.png
+reports/*_slking_chip_report.html
+vendor/
