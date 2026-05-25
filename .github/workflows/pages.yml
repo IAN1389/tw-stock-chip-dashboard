@@ -37,7 +37,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Generate report
-        run: python main.py --lookback-days 45 --retry-days 10
+        run: python main.py --date "$(TZ=Asia/Taipei date +%F)" --lookback-days 45 --retry-days 10
 
       - name: Disable Jekyll
         run: touch reports/.nojekyll
