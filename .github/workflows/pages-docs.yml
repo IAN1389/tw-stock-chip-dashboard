@@ -1,4 +1,4 @@
-name: Deploy stock report to GitHub Pages
+name: Publish stock dashboard
 
 on:
   workflow_dispatch:
@@ -12,10 +12,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
