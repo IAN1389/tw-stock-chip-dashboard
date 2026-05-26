@@ -17,6 +17,8 @@ class ReportPaths:
 
 
 class ReportGenerator:
+    MONEY_MILLION_COLUMNS = {"turnover_million", "active_flow_million", "inst_flow_million"}
+
     def __init__(self, output_dir: str = "reports") -> None:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -96,7 +98,7 @@ class ReportGenerator:
             "",
             "分析原則：不預設多空，用趨勢、量能、法人、主力集中度、族群強度交叉驗證。分數不是買賣保證，只是排序工具。",
             "",
-            "族群分類：以 FinMind TaiwanStockInfo 產業別為主，缺值時才用股票名稱與代號做備援分類。",
+            "族群分類：以台股常用題材與產業族群為主，例如 AI 伺服器、PCB、散熱、記憶體、IC 設計、金融股、航運股；公開產業別只作備援。",
             "",
             "## 今日大盤結論",
             "",
@@ -174,7 +176,7 @@ class ReportGenerator:
             "",
             "- 放量突破隔日若開高走低，優先視為籌碼鬆動。",
             "- 分數高但融資暴增，倉位要縮小；分數低且反彈無量，弱者續弱機率較高。",
-            "- 族群分類以公開產業別資料為主，題材概念仍需搭配公司公告與新聞事件確認。",
+            "- 族群分類以常用台股題材與產業稱呼為主，題材概念仍需搭配公司公告與新聞事件確認。",
             "- 本報告不構成投資建議，請依自身資金與風險承受度決策。",
         ]
         if errors:
@@ -211,7 +213,32 @@ class ReportGenerator:
             return "沒有符合條件的股票。"
         base = ["market", "code", "name", "sector", "close", "pct_change", "volume", "score"]
         cols = base + extra_cols + ["trend_label", "chip_note", "risk_note"]
-        return df[[c for c in cols if c in df.columns]].round(2).to_markdown(index=False)
+        out = df[[c for c in cols if c in df.columns]].copy()
+        for col in self.MONEY_MILLION_COLUMNS.intersection(out.columns):
+            out[col] = out[col] / 100
+        display_names = {
+            "market": "市場",
+            "code": "代號",
+            "name": "名稱",
+            "sector": "族群",
+            "close": "收盤",
+            "pct_change": "漲跌幅",
+            "volume": "成交量",
+            "score": "分數",
+            "prev_pct_change": "前日漲跌幅",
+            "volume_ratio": "量比",
+            "turnover_million": "成交金額(億)",
+            "active_flow_million": "主動流入(億)",
+            "inst_flow_million": "法人金額(億)",
+            "inst_buy_lots": "法人合計",
+            "foreign_buy_lots": "外資",
+            "trust_buy_lots": "投信",
+            "dealer_buy_lots": "自營商",
+            "trend_label": "趨勢",
+            "chip_note": "籌碼",
+            "risk_note": "風險",
+        }
+        return out.rename(columns=display_names).round(2).to_markdown(index=False)
 
     def _sector_flow_table(self, df: pd.DataFrame) -> str:
         if df.empty:
@@ -357,7 +384,7 @@ class ReportGenerator:
     <div>
       <div class="eyebrow">TW After-hours Chip Dashboard</div>
       <h1>主力大戶籌碼分析報告</h1>
-      <p>{escape(trade_date.isoformat())}｜產生時間 {escape(generated)}｜產業族群分類</p>
+      <p>{escape(trade_date.isoformat())}｜產生時間 {escape(generated)}｜台股常用族群分類</p>
     </div>
     <nav>
       <a href="#market">大盤</a>
@@ -390,7 +417,7 @@ class ReportGenerator:
     <section id="sectors" class="panel">
       <div class="section-head">
         <h2>族群分類統計</h2>
-        <span>依 FinMind TaiwanStockInfo 產業別分類，缺值才使用名稱與代號備援</span>
+        <span>以台股常用題材與產業稱呼分類，公開產業別作備援</span>
       </div>
       {self._sector_cards(sectors.head(8))}
     </section>
@@ -548,9 +575,9 @@ main{max-width:1440px;margin:0 auto;padding:24px}.summary-grid{display:grid;grid
             "inst_buy_lots": "法人合計",
             "prev_pct_change": "前日漲跌幅",
             "volume_ratio": "量比",
-            "turnover_million": "成交金額(百萬)",
-            "active_flow_million": "主動流入(百萬)",
-            "inst_flow_million": "法人金額(百萬)",
+            "turnover_million": "成交金額(億)",
+            "active_flow_million": "主動流入(億)",
+            "inst_flow_million": "法人金額(億)",
         }
         headers = ["市場", "代號", "名稱", "族群", "收盤", "漲跌幅", "成交量", "分數"] + [header_map.get(c, c) for c in extra_cols] + ["趨勢", "籌碼", "風險"]
         rows = []
@@ -582,8 +609,8 @@ main{max-width:1440px;margin:0 auto;padding:24px}.summary-grid{display:grid;grid
             return f"{number:.2f}%"
         if col in {"volume_ratio"}:
             return f"{number:.2f}"
-        if col.endswith("_million"):
-            return f"{number:,.1f}"
+        if col in self.MONEY_MILLION_COLUMNS:
+            return f"{number / 100:,.2f}"
         return f"{number:,.0f}"
 
     def _html_screen_summary(self, stocks: pd.DataFrame) -> str:
