@@ -23,6 +23,7 @@ jobs:
     env:
       TZ: Asia/Taipei
       FINMIND_TOKEN: ${{ secrets.FINMIND_TOKEN }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,8 +40,11 @@ jobs:
       - name: Generate report
         run: python main.py --date "$(TZ=Asia/Taipei date +%F)" --lookback-days 45 --retry-days 10
 
-      - name: Disable Jekyll
-        run: touch reports/.nojekyll
+      - name: Prepare Pages site
+        run: |
+          mkdir -p docs
+          cp reports/index.html docs/index.html
+          touch docs/.nojekyll
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -50,11 +54,13 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: reports
+          path: docs
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
