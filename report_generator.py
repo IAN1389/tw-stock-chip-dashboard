@@ -370,6 +370,10 @@ class ReportGenerator:
             watch_view,
             ["code", "name", "sector", "score", "close", "pct_change", "volume", "reason", "risk_note"],
         )
+        sector_stock_payload = self._json_records(
+            self._sector_tab_stocks(stocks),
+            ["code", "name", "sector", "score", "close", "pct_change", "volume", "trend_label", "chip_note", "risk_note"],
+        )
 
         return f"""<!doctype html>
 <html lang="zh-Hant">
@@ -389,6 +393,7 @@ class ReportGenerator:
     <nav>
       <a href="#market">大盤</a>
       <a href="#sectors">族群</a>
+      <a href="#category-tabs">分類分頁</a>
       <a href="#strong">強勢</a>
       <a href="#weak">弱勢</a>
       <a href="#watch">觀察</a>
@@ -396,6 +401,20 @@ class ReportGenerator:
   </header>
 
   <main>
+    <section class="hero-panel">
+      <div>
+        <div class="eyebrow">After-hours camp classification</div>
+        <h2>盤後籌碼陣營總覽</h2>
+        <p>{escape(market_line)}</p>
+      </div>
+      <div class="hero-facts">
+        <div><span>交易日</span><strong>{escape(trade_date.isoformat())}</strong></div>
+        <div><span>主流族群</span><strong>{escape(str(best_sector))}</strong></div>
+        <div><span>分類數</span><strong>{len(set(stocks["sector"].dropna())) if "sector" in stocks.columns else 0}</strong></div>
+        <div><span>觀察名單</span><strong>{len(watch_view)}</strong></div>
+      </div>
+    </section>
+
     <section id="market" class="summary-grid">
       {self._metric_card("平均分數", f"{avg_score:.1f}", self._score_state(avg_score), "全市場多因子平均")}
       {self._metric_card("上漲家數比", f"{up_ratio:.1f}%", self._ratio_state(up_ratio), "普通股上漲比例")}
@@ -420,6 +439,19 @@ class ReportGenerator:
         <span>以台股常用題材與產業稱呼分類，公開產業別作備援</span>
       </div>
       {self._sector_cards(sectors.head(8))}
+    </section>
+
+    <section id="category-tabs" class="panel">
+      <div class="section-head">
+        <h2>分類分頁</h2>
+        <span>依族群切成獨立分頁，每頁顯示該分類分數排序</span>
+      </div>
+      <div class="toolbar">
+        <input id="categorySearch" type="search" placeholder="搜尋代號、名稱、族群">
+        <span id="categoryMeta" class="toolbar-meta"></span>
+      </div>
+      <div id="categoryTabs" class="tabs" role="tablist"></div>
+      <div id="categoryPane"></div>
     </section>
 
     <section class="panel">
@@ -491,25 +523,48 @@ class ReportGenerator:
 
   <script>
     const watchStocks = {stock_payload};
+    const sectorStocks = {sector_stock_payload};
     {self._html_script()}
   </script>
 </body>
 </html>"""
 
+    def _sector_tab_stocks(self, stocks: pd.DataFrame) -> pd.DataFrame:
+        if stocks.empty or "sector" not in stocks.columns:
+            return pd.DataFrame()
+        cols = [
+            "code",
+            "name",
+            "sector",
+            "score",
+            "close",
+            "pct_change",
+            "volume",
+            "trend_label",
+            "chip_note",
+            "risk_note",
+        ]
+        out = stocks[[c for c in cols if c in stocks.columns]].copy()
+        out["sector"] = out["sector"].fillna("其他").astype(str)
+        out = out.sort_values(["sector", "score", "volume"], ascending=[True, False, False])
+        return out.groupby("sector", group_keys=False).head(20)
+
     def _html_css(self) -> str:
         return """<style>
-:root{--bg:#f4f6f5;--panel:#fff;--ink:#17201c;--muted:#65736d;--line:#dce4df;--green:#16855f;--red:#b84a4a;--amber:#9d6b16;--blue:#2f6f9f}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",Arial,sans-serif;line-height:1.5}
-.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 28px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
-.eyebrow{font-size:12px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.08em}.topbar h1{margin:2px 0 4px;font-size:24px;letter-spacing:0}.topbar p{margin:0;color:var(--muted);font-size:13px}
-nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#1f352d;text-decoration:none;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
-main{max-width:1440px;margin:0 auto;padding:24px}.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{display:block;margin:6px 0;font-size:30px;line-height:1.1}.metric.positive strong{color:var(--green)}.metric.negative strong{color:var(--red)}.metric.neutral strong{color:var(--blue)}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:18px 0;padding:20px}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:22px}.subgrid{display:grid;grid-template-columns:1fr;gap:18px}.mini-section{margin:18px 0}.mini-section h3{margin:0 0 10px;font-size:17px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:14px}h2{margin:0 0 8px;font-size:20px;letter-spacing:0}.section-head h2{margin:0}.section-head span,.lead{color:var(--muted)}.lead{font-size:17px;margin:0}
-.sector-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sector{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfb}.sector-top{display:flex;justify-content:space-between;align-items:center}.sector h3{margin:0;font-size:17px}.bar{height:8px;background:#e8eeea;border-radius:99px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),#78a85a)}.sector dl{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0}.sector dt{color:var(--muted);font-size:12px}.sector dd{margin:0;font-weight:700}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}table{width:100%;border-collapse:collapse;min-width:1080px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top;font-size:14px}th{position:sticky;top:0;background:#edf4f1;color:#243a33;font-weight:700}td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4),td:last-child{text-align:left}.positive{color:var(--green);font-weight:700}.negative{color:var(--red);font-weight:700}.neutral{color:var(--blue)}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700}.score-pill{display:inline-flex;min-width:48px;justify-content:center;padding:3px 8px;border-radius:99px;color:white;font-weight:700}.score-high{background:var(--green)}.score-mid{background:var(--amber)}.score-low{background:var(--red)}.tag{display:inline-block;margin:0 4px 4px 0;padding:3px 7px;border-radius:99px;background:#eef5f3;color:#244139;font-size:12px}
-.toolbar{display:flex;gap:10px;margin-bottom:14px}input,select{height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;font-size:15px}input{flex:1}.watch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.watch-card{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfb}.watch-card header{display:flex;justify-content:space-between;gap:10px;align-items:start}.watch-card h3{margin:0;font-size:17px}.watch-card p{margin:6px 0;color:var(--muted);font-size:13px}.watch-card .risk-text{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;color:#36443f}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.price-grid div{background:#f1f5f3;border-radius:8px;padding:8px}.price-grid span{display:block;color:var(--muted);font-size:12px}.price-grid b{font-size:15px}.summary-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}.summary-list li{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:9px 10px}.warnings{margin:0;padding-left:18px;color:var(--muted)}
-@media (max-width:1000px){.summary-grid,.sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-column,.watch-grid{grid-template-columns:1fr}.topbar{position:static;align-items:flex-start;flex-direction:column}.section-head{align-items:flex-start;flex-direction:column}.toolbar{flex-direction:column}}
-@media (max-width:620px){main{padding:14px}.summary-grid,.sector-grid{grid-template-columns:1fr}.topbar{padding:16px}.topbar h1{font-size:21px}.metric strong{font-size:26px}.panel{padding:14px}.summary-list{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}nav a{font-size:13px;padding:7px 8px}}
+:root{--bg:#eef2ef;--panel:#fff;--panel-soft:#f8faf8;--ink:#111815;--muted:#66736d;--line:#d8e1dc;--line-strong:#c4d0ca;--green:#0f7a58;--green-2:#6fa342;--red:#b54545;--amber:#a86b13;--blue:#276a8d;--navy:#173b31;--shadow:0 18px 42px rgba(31,49,42,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% -10%,rgba(15,122,88,.16),transparent 32%),linear-gradient(180deg,#f8faf8 0%,var(--bg) 44%,#e8eeeb 100%);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.5}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 28px;background:rgba(248,250,248,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+.eyebrow{font-size:12px;color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:.08em}.topbar h1{margin:2px 0 4px;font-size:23px;letter-spacing:0}.topbar p{margin:0;color:var(--muted);font-size:13px}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#20372f;text-decoration:none;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;transition:background .18s ease,border-color .18s ease,transform .18s ease}nav a:hover{background:#eef6f2;border-color:#a9c7ba;transform:translateY(-1px)}
+main{max-width:1480px;margin:0 auto;padding:24px}.hero-panel{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(360px,.8fr);gap:22px;margin:4px 0 18px;padding:26px;background:linear-gradient(135deg,#113a31 0%,#1e5d4e 52%,#f4f7f3 52%);border:1px solid rgba(17,58,49,.18);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}.hero-panel h2{color:#fff;font-size:34px;margin:4px 0 10px}.hero-panel p{max-width:760px;margin:0;color:#dcebe5;font-size:17px}.hero-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hero-facts div{background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.55);border-radius:8px;padding:13px 14px}.hero-facts span{display:block;color:var(--muted);font-size:12px}.hero-facts strong{display:block;margin-top:4px;font-size:20px;color:#173b31;line-height:1.2}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.metric{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;box-shadow:0 10px 28px rgba(25,42,35,.05)}.metric:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--blue)}.metric.positive:before{background:var(--green)}.metric.negative:before{background:var(--red)}.metric span{display:block;color:var(--muted);font-size:13px}.metric strong{display:block;margin:6px 0;font-size:30px;line-height:1.1}.metric.positive strong{color:var(--green)}.metric.negative strong{color:var(--red)}.metric.neutral strong{color:var(--blue)}
+.panel{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:8px;margin:18px 0;padding:20px;box-shadow:0 12px 30px rgba(31,49,42,.05)}.two-column{display:grid;grid-template-columns:1fr 1fr;gap:22px}.subgrid{display:grid;grid-template-columns:1fr;gap:18px}.mini-section{margin:18px 0}.mini-section h3{margin:0 0 10px;font-size:17px}.section-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:14px}h2{margin:0 0 8px;font-size:20px;letter-spacing:0}.section-head h2{margin:0}.section-head span,.lead{color:var(--muted)}.lead{font-size:17px;margin:0}
+.sector-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.sector{border:1px solid var(--line);border-radius:8px;padding:14px;background:linear-gradient(180deg,#fff,#f8fbf9);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.sector:hover{transform:translateY(-2px);border-color:#a9c7ba;box-shadow:0 12px 28px rgba(31,49,42,.08)}.sector-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.sector h3{margin:0;font-size:17px}.bar{height:8px;background:#e7eeea;border-radius:99px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--green-2))}.sector dl{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0}.sector dt{color:var(--muted);font-size:12px}.sector dd{margin:0;font-weight:800}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}table{width:100%;border-collapse:separate;border-spacing:0;min-width:1080px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top;font-size:14px}tbody tr:nth-child(even){background:#fbfdfb}tbody tr:hover{background:#eef6f2}th{position:sticky;top:0;background:#e8f1ed;color:#243a33;font-weight:800;z-index:1}td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4),td:last-child{text-align:left}.positive{color:var(--green);font-weight:800}.negative{color:var(--red);font-weight:800}.neutral{color:var(--blue)}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800}.score-pill{display:inline-flex;min-width:48px;justify-content:center;padding:3px 8px;border-radius:99px;color:white;font-weight:800}.score-high{background:var(--green)}.score-mid{background:var(--amber)}.score-low{background:var(--red)}.tag{display:inline-block;margin:0 4px 4px 0;padding:3px 7px;border-radius:99px;background:#eef5f3;color:#244139;font-size:12px}
+.toolbar{display:flex;gap:10px;margin-bottom:14px;align-items:center}input,select{height:40px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:0 12px;font-size:15px}input{flex:1}input:focus,select:focus,.tab-button:focus{outline:2px solid rgba(15,122,88,.22);outline-offset:2px;border-color:#78aa95}.toolbar-meta{color:var(--muted);font-size:13px;white-space:nowrap}.tabs{display:flex;gap:8px;overflow:auto;padding:2px 0 12px;margin-bottom:14px}.tab-button{border:1px solid var(--line);border-radius:8px;background:#fff;color:#243a33;cursor:pointer;flex:0 0 auto;padding:8px 11px;font-size:14px;transition:background .16s ease,color .16s ease,border-color .16s ease,transform .16s ease}.tab-button:hover{transform:translateY(-1px);border-color:#a9c7ba}.tab-button[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}.tab-count{opacity:.72;margin-left:4px}.category-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}.category-head h3{margin:0;font-size:18px}.category-head span{color:var(--muted);font-size:13px}
+.watch-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.watch-card{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fff;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.watch-card:hover{transform:translateY(-2px);border-color:#a9c7ba;box-shadow:0 12px 28px rgba(31,49,42,.08)}.watch-card header{display:flex;justify-content:space-between;gap:10px;align-items:start}.watch-card h3{margin:0;font-size:17px}.watch-card p{margin:6px 0;color:var(--muted);font-size:13px}.watch-card .risk-text{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;color:#36443f}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.price-grid div{background:#f1f5f3;border-radius:8px;padding:8px}.price-grid span{display:block;color:var(--muted);font-size:12px}.price-grid b{font-size:15px}.summary-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}.summary-list li{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:9px 10px;background:#fff}.warnings{margin:0;padding-left:18px;color:var(--muted)}
+@media (max-width:1000px){main{padding:18px}.hero-panel{grid-template-columns:1fr;background:linear-gradient(180deg,#113a31 0%,#1e5d4e 58%,#f4f7f3 58%)}.summary-grid,.sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-column,.watch-grid{grid-template-columns:1fr}.topbar{position:static;align-items:flex-start;flex-direction:column}.section-head{align-items:flex-start;flex-direction:column}.toolbar{align-items:stretch;flex-direction:column}.toolbar-meta{white-space:normal}}
+@media (max-width:620px){main{padding:14px}.hero-panel{padding:18px}.hero-panel h2{font-size:27px}.hero-panel p{font-size:15px}.hero-facts,.summary-grid,.sector-grid{grid-template-columns:1fr}.topbar{padding:16px}.topbar h1{font-size:21px}.metric strong{font-size:26px}.panel{padding:14px}.summary-list{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}nav a{font-size:13px;padding:7px 8px}th,td{font-size:13px;padding:9px 10px}}
 </style>"""
 
     def _metric_card(self, title: str, value: str, state: str, note: str) -> str:
@@ -648,7 +703,13 @@ main{max-width:1440px;margin:0 auto;padding:24px}.summary-grid{display:grid;grid
 const container = document.getElementById('watchCards');
 const search = document.getElementById('stockSearch');
 const sectorFilter = document.getElementById('sectorFilter');
+const categorySearch = document.getElementById('categorySearch');
+const categoryTabs = document.getElementById('categoryTabs');
+const categoryPane = document.getElementById('categoryPane');
+const categoryMeta = document.getElementById('categoryMeta');
 const sectors = [...new Set(watchStocks.map(s => s.sector).filter(Boolean))].sort();
+const categoryNames = [...new Set(sectorStocks.map(s => s.sector).filter(Boolean))].sort();
+let activeCategory = categoryNames[0] || '';
 for (const sector of sectors) {
   const option = document.createElement('option');
   option.value = sector;
@@ -659,6 +720,74 @@ function scoreClass(score) {
   if (score >= 70) return 'score-high';
   if (score <= 35) return 'score-low';
   return 'score-mid';
+}
+function pctClass(pct) {
+  if (pct > 0) return 'positive';
+  if (pct < 0) return 'negative';
+  return 'neutral';
+}
+function renderCategoryTabs() {
+  const q = categorySearch.value.trim().toLowerCase();
+  const visibleNames = categoryNames.filter(name => {
+    if (!q) return true;
+    return sectorStocks.some(s => {
+      const text = `${s.code || ''} ${s.name || ''} ${s.sector || ''}`.toLowerCase();
+      return s.sector === name && text.includes(q);
+    });
+  });
+  if (!visibleNames.includes(activeCategory)) {
+    activeCategory = visibleNames[0] || '';
+  }
+  categoryMeta.textContent = `${visibleNames.length} 個分類｜${sectorStocks.length} 筆候選`;
+  categoryTabs.innerHTML = visibleNames.map(name => {
+    const count = sectorStocks.filter(s => s.sector === name).length;
+    return `<button class="tab-button" type="button" role="tab" aria-selected="${name === activeCategory}" data-sector="${name}">${name}<span class="tab-count">${count}</span></button>`;
+  }).join('');
+  for (const button of categoryTabs.querySelectorAll('button')) {
+    button.addEventListener('click', () => {
+      activeCategory = button.dataset.sector;
+      renderCategoryTabs();
+      renderCategoryPane();
+    });
+  }
+  renderCategoryPane();
+}
+function renderCategoryPane() {
+  const q = categorySearch.value.trim().toLowerCase();
+  const rows = sectorStocks.filter(s => {
+    const text = `${s.code || ''} ${s.name || ''} ${s.sector || ''}`.toLowerCase();
+    return s.sector === activeCategory && (!q || text.includes(q));
+  });
+  if (!activeCategory || rows.length === 0) {
+    categoryPane.innerHTML = '<p class="lead">沒有符合搜尋條件的分類資料。</p>';
+    return;
+  }
+  categoryPane.innerHTML = `
+    <div class="category-head">
+      <h3>${activeCategory}</h3>
+      <span>${rows.length} 檔｜依分數排序</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>代號</th><th>名稱</th><th>收盤</th><th>漲跌幅</th><th>成交量</th><th>分數</th><th>趨勢</th><th>籌碼</th><th>風險</th></tr></thead>
+        <tbody>
+          ${rows.map(s => `
+            <tr>
+              <td><span class="code">${s.code || ''}</span></td>
+              <td>${s.name || ''}</td>
+              <td>${Number(s.close || 0).toFixed(2)}</td>
+              <td class="${pctClass(Number(s.pct_change || 0))}">${Number(s.pct_change || 0).toFixed(2)}%</td>
+              <td>${Number(s.volume || 0).toLocaleString()}</td>
+              <td><span class="score-pill ${scoreClass(Number(s.score || 0))}">${Number(s.score || 0).toFixed(1)}</span></td>
+              <td>${s.trend_label || ''}</td>
+              <td>${s.chip_note || ''}</td>
+              <td>${s.risk_note || ''}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
 }
 function render() {
   const q = search.value.trim().toLowerCase();
@@ -682,6 +811,8 @@ function render() {
 }
 search.addEventListener('input', render);
 sectorFilter.addEventListener('change', render);
+categorySearch.addEventListener('input', renderCategoryTabs);
+renderCategoryTabs();
 render();
 """
 
